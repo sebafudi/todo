@@ -1,0 +1,78 @@
+@import "~nord/src/sass/nord.scss";
+
+.add-todo-item {
+  background-color: $nord4;
+  border-radius: 0.5em;
+  display: grid;
+  gap: 0px 0px;
+  grid-template-columns: 2em calc(100% - 2em);
+  margin: 0.5em;
+  padding: 0.5em;
+  box-shadow: 2px 2px 5px 2px rgb(0 0 0 / 50%);
+}
+
+.add-todo-item-checkbox {
+  align-items: center;
+  display: flex;
+  height: 2em;
+  justify-content: center;
+  width: 2em;
+}
+
+div.add-todo-item-checkbox > input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5em;
+  background-color: $nord6;
+  transition-duration: 0.3s;
+}
+
+.add-todo-item-checkbox input:checked ~ .checkmark {
+  background-color: $nord14;
+  box-shadow: inset -1px -1px 2px 1px rgb(0 0 0 / 25%);
+}
+.checkmark:after {
+  content: "";
+  display: none;
+  position: relative;
+  left: 0.65em;
+  top: 0.2em;
+  width: 0.7em;
+  height: 1.3em;
+}
+.add-todo-item-checkbox .checkmark:after {
+  border: solid $nord6;
+  border-width: 0 0.3em 0.3em 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.add-todo-item-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.add-todo-item-text {
+  align-items: center;
+  background-color: inherit;
+  color: $nord2;
+  display: flex;
+  justify-content: left;
+  text-align: left;
+  margin: 0 0.25em;
+  padding: 0 0.25em;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  border-radius: 0.5em;
+}
+
+.add-todo-item-text:focus {
+  background-color: $nord5;
+}
+.add-todo-item-text::placeholder {
+  opacity: 50%;
+}

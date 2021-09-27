@@ -1,30 +1,24 @@
 import Item from "../Item/Item";
 import "./List.scss";
-
-let itemArray = [
-  {
-    text: "test",
-    checked: false,
-  },
-  {
-    text: "test2",
-    checked: true,
-  },
-  {
-    text: "test3",
-    checked: false,
-  },
-  {
-    text: "test1 2 3",
-  },
-];
+import AddItem from "../AddItem/AddItem";
+import { useEffect, useState } from "react";
 
 function List() {
+  const localItems = JSON.parse(localStorage.getItem("items"));
+  const [items, setItems] = useState(localItems ? localItems : []);
+  function addItem(item) {
+    setItems([...items, { text: item.text, checked: item.checked }]);
+    console.log(items);
+  }
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(items));
+  }, [items]);
   return (
     <div className="todo-list">
-      {itemArray.map((item) => (
+      {items.map((item) => (
         <Item text={item.text} checked={item.checked} />
       ))}
+      <AddItem submitItem={addItem} />
     </div>
   );
 }
