@@ -1,0 +1,9 @@
+@import "~nord/src/sass/nord.scss";
+
+.hero-container {
+  text-align: center;
+}
+
+.hero-container > h1 {
+  color: $nord5;
+}

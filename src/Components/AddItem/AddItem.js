@@ -46,7 +46,7 @@ function AddItem(props) {
       <input
         type="text"
         className="add-todo-item-text"
-        placeholder="Add item..."
+        placeholder="add item..."
         name="x"
         id="x"
         value={text}
