@@ -5,10 +5,10 @@
   border-radius: 0.5em;
   display: grid;
   gap: 0px 0px;
-  grid-template-columns: 2em 100px;
+  grid-template-columns: 2em calc(100% - 2em);
   margin: 0.5em;
-  max-width: 300px;
   padding: 0.5em;
+  box-shadow: 2px 2px 5px 2px rgb(0 0 0 / 50%);
 }
 
 .todo-item-checkbox {
@@ -19,10 +19,47 @@
   width: 2em;
 }
 
+div.todo-item-checkbox > input[type="checkbox"] {
+  display: none;
+}
+
+.checkmark {
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5em;
+  background-color: $nord6;
+  transition-duration: 0.3s;
+}
+
+.todo-item-checkbox input:checked ~ .checkmark {
+  background-color: $nord14;
+  box-shadow: inset -1px -1px 2px 1px rgb(0 0 0 / 25%);
+}
+.checkmark:after {
+  content: "";
+  display: none;
+  position: relative;
+  left: 20px;
+  top: 6px;
+  width: 0.7em;
+  height: 1.3em;
+}
+.todo-item-checkbox .checkmark:after {
+  border: solid $nord6;
+  border-width: 0 0.3em 0.3em 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.todo-item-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
 .todo-item-text {
   align-items: center;
-  color: $nord0;
+  color: $nord2;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   text-align: left;
+  padding: 0 0.5em;
 }

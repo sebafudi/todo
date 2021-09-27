@@ -1,13 +1,14 @@
 import "./Item.scss";
 
-function Item() {
+function Item({ text }) {
   return (
-    <div className="todo-item">
+    <label htmlFor={text} className="todo-item">
       <div className="todo-item-checkbox">
-        <input type="checkbox" name="todo-item-checkbox-done" />
+        <input type="checkbox" id={text} />
+        <span class="checkmark"></span>
       </div>
-      <div className="todo-item-text">Test todo task</div>
-    </div>
+      <div className="todo-item-text">{text}</div>
+    </label>
   );
 }
 

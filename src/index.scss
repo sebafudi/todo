@@ -2,6 +2,8 @@
 
 html {
   box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
 }
 *,
 *:before,
@@ -16,7 +18,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $nord3;
+  background-color: $nord2;
+  font-size: 2em;
 }
 
 code {
