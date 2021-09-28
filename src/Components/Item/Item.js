@@ -3,18 +3,17 @@ import { useEffect, useState } from "react";
 import "./Item.scss";
 
 function Item(props) {
-  const localChecked = JSON.parse(localStorage.getItem("todo-item" + props.id));
-  const [checked, setChecked] = useState(
-    localChecked !== null ? localChecked : props.checked ? true : false
-  );
+  const [checked, setChecked] = useState(props.checked);
 
   function toggleItem() {
     setChecked(!checked);
   }
 
   useEffect(() => {
-    localStorage.setItem("todo-item" + props.id, checked);
-  }, [checked, props.id]);
+    props.onUpdate({ ...props, checked });
+    // props.onUpdate({ id: props.id, checked: checked, text: props.text });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [checked]);
 
   return (
     <label htmlFor={props.id} className="todo-item">

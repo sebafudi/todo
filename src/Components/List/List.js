@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 function List() {
   const localItems = JSON.parse(localStorage.getItem("items"));
   const [items, setItems] = useState(localItems ? localItems : []);
+
   function addItem(item) {
     let lastId = items.length > 0 ? items.sort((a, b) => b.id - a.id)[0].id : 0;
     setItems([
@@ -17,9 +18,19 @@ function List() {
       },
     ]);
   }
+
+  function itemUpdate(item) {
+    let x = items.findIndex((i) => i.id === item.id);
+    items[x] = item;
+    setItems([...items]);
+  }
+
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
+
+  items.sort((a, b) => a.id - b.id);
+
   return (
     <div className="todo-list">
       {items.map((item) => (
@@ -28,6 +39,7 @@ function List() {
           id={item.id}
           text={item.text}
           checked={item.checked}
+          onUpdate={itemUpdate}
         />
       ))}
       <AddItem submitItem={addItem} />
