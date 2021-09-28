@@ -7,8 +7,15 @@ function List() {
   const localItems = JSON.parse(localStorage.getItem("items"));
   const [items, setItems] = useState(localItems ? localItems : []);
   function addItem(item) {
-    setItems([...items, { text: item.text, checked: item.checked }]);
-    console.log(items);
+    let lastId = items.length > 0 ? items.sort((a, b) => b.id - a.id)[0].id : 0;
+    setItems([
+      ...items,
+      {
+        id: lastId + 1,
+        text: item.text,
+        checked: item.checked,
+      },
+    ]);
   }
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items));
@@ -16,7 +23,12 @@ function List() {
   return (
     <div className="todo-list">
       {items.map((item) => (
-        <Item text={item.text} checked={item.checked} />
+        <Item
+          key={item.id}
+          id={item.id}
+          text={item.text}
+          checked={item.checked}
+        />
       ))}
       <AddItem submitItem={addItem} />
     </div>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "./Item.scss";
 
 function Item(props) {
-  const localChecked = JSON.parse(localStorage.getItem(props.text));
+  const localChecked = JSON.parse(localStorage.getItem("todo-item" + props.id));
   const [checked, setChecked] = useState(
     localChecked !== null ? localChecked : props.checked ? true : false
   );
@@ -13,17 +13,17 @@ function Item(props) {
   }
 
   useEffect(() => {
-    localStorage.setItem(props.text, checked);
-  }, [checked, props.text]);
+    localStorage.setItem("todo-item" + props.id, checked);
+  }, [checked, props.id]);
 
   return (
-    <label htmlFor={props.text} className="todo-item">
+    <label htmlFor={props.id} className="todo-item">
       <div className="todo-item-checkbox">
         <input
           type="checkbox"
           defaultChecked={checked}
           onChange={toggleItem}
-          id={props.text}
+          id={props.id}
         />
         <span className="checkmark"></span>
       </div>
