@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import "./Item.scss";
 
@@ -7,6 +9,11 @@ function Item(props) {
 
   function toggleItem() {
     setChecked(!checked);
+  }
+
+  function deleteItem(e) {
+    e.preventDefault();
+    props.onDelete();
   }
 
   useEffect(() => {
@@ -27,6 +34,11 @@ function Item(props) {
         <span className="checkmark"></span>
       </div>
       <div className="todo-item-text">{props.text}</div>
+      <div className="todo-item-delete">
+        <div>
+          <FontAwesomeIcon icon={faTrash} onClick={deleteItem} />
+        </div>
+      </div>
     </label>
   );
 }

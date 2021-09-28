@@ -8,7 +8,10 @@ function List() {
   const [items, setItems] = useState(localItems ? localItems : []);
 
   function addItem(item) {
-    let lastId = items.length > 0 ? items.sort((a, b) => b.id - a.id)[0].id : 0;
+    const lastId = items.reduce(
+      (prev, current) => (prev.y > current.y ? prev : current).id,
+      -1
+    );
     setItems([
       ...items,
       {
@@ -20,16 +23,22 @@ function List() {
   }
 
   function itemUpdate(item) {
-    let x = items.findIndex((i) => i.id === item.id);
-    items[x] = item;
+    let index = items.findIndex((i) => i.id === item.id);
+    items[index] = item;
+    setItems([...items]);
+  }
+
+  function deleteItem() {
+    let index = items.findIndex((i) => i.id === this.id);
+    if (index > -1) {
+      items.splice(index, 1);
+    }
     setItems([...items]);
   }
 
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
-
-  items.sort((a, b) => a.id - b.id);
 
   return (
     <div className="todo-list">
@@ -40,6 +49,7 @@ function List() {
           text={item.text}
           checked={item.checked}
           onUpdate={itemUpdate}
+          onDelete={deleteItem}
         />
       ))}
       <AddItem submitItem={addItem} />
