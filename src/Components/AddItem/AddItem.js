@@ -23,8 +23,8 @@ function AddItem(props) {
   }, [text]);
 
   function submitItem(e) {
-    if (e.key === "Enter") {
-      props.submitItem({ checked, text });
+    if (e.key === "Enter" && text.trim().length > 0) {
+      props.submitItem({ checked, text: text.trim() });
       setText("");
       setChecked(false);
     }
@@ -50,7 +50,11 @@ function AddItem(props) {
         name="x"
         id="x"
         value={text}
-        onInput={(e) => setText(e.target.value)}
+        onInput={(e) =>
+          e.target.value.length > 1
+            ? setText(e.target.value)
+            : setText(e.target.value.trim())
+        }
         onKeyDown={submitItem}
       />
     </div>
