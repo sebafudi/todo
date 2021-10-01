@@ -3,12 +3,12 @@
 .add-todo-item {
   background-color: $nord4;
   border-radius: 0.5em;
+  box-shadow: 2px 2px 5px 2px rgb(0 0 0 / 50%);
   display: grid;
   gap: 0px 0px;
   grid-template-columns: 2em calc(100% - 2em);
   margin: 0.5em;
   padding: 0.5em;
-  box-shadow: 2px 2px 5px 2px rgb(0 0 0 / 50%);
 }
 
 .add-todo-item-checkbox {
@@ -24,11 +24,11 @@ div.add-todo-item-checkbox > input[type="checkbox"] {
 }
 
 .checkmark {
-  height: 100%;
-  width: 100%;
-  border-radius: 0.5em;
   background-color: $nord6;
+  border-radius: 0.5em;
+  height: 100%;
   transition-duration: 0.3s;
+  width: 100%;
 }
 
 .add-todo-item-checkbox input:checked ~ .checkmark {
@@ -38,17 +38,15 @@ div.add-todo-item-checkbox > input[type="checkbox"] {
 .checkmark:after {
   content: "";
   display: none;
-  position: relative;
+  height: 1.3em;
   left: 0.65em;
+  position: relative;
   top: 0.2em;
   width: 0.7em;
-  height: 1.3em;
 }
 .add-todo-item-checkbox .checkmark:after {
   border: solid $nord6;
   border-width: 0 0.3em 0.3em 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 .add-todo-item-checkbox input:checked ~ .checkmark:after {
@@ -58,16 +56,18 @@ div.add-todo-item-checkbox > input[type="checkbox"] {
 .add-todo-item-text {
   align-items: center;
   background-color: inherit;
-  color: $nord2;
-  display: flex;
-  justify-content: left;
-  text-align: left;
-  margin: 0 0.25em;
-  padding: 0 0.25em;
-  border: 0;
-  outline: 0;
-  font-size: 100%;
   border-radius: 0.5em;
+  border: 0;
+  color: $nord2;
+  color: inherit;
+  display: flex;
+  font-family: inherit;
+  font-size: 100%;
+  justify-content: left;
+  margin: 0 0.25em;
+  outline: 0;
+  padding: 0 0.25em;
+  text-align: left;
 }
 
 .add-todo-item-text:focus {
